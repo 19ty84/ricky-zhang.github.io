@@ -42,27 +42,33 @@ p {
 /* 链接列表样式 */
 .links {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    /* 当宽度不足时自动换行 */
-    gap: .75rem;
-    /* 项目之间的间距 */
+    display: block;
+    /* 一行一个，默认块级 */
+    margin-bottom: 1rem;
+}
+
+.links li+li {
+    /* 给相邻的 <li> 添加上边距，让它们不贴在一起 */
+    margin-top: .75rem;
 }
 
 .links a {
     text-decoration: none;
-    padding: .5rem 1rem;
+    display: flex;
+    /* 嵌套 <img> 与文字并排显示 */
+    align-items: center;
+    /* 让图标垂直居中 */
+    gap: .5rem;
+    /* 图标和文字之间的间距 */
+    padding: .4rem 1rem;
     border-radius: .25rem;
     background-color: #e2e8f0;
-    /* 浅灰背景，点亮链接 */
     color: #4a5568;
-    /* 深灰文字 */
     transition: all .15s ease-in-out;
 }
 
 .links a:hover,
 .links a:focus {
     background-color: #3182ce;
-    /* 蓝色高亮 */
     color: #fff;
 }
