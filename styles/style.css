@@ -45,6 +45,7 @@ p {
 div {
     margin-top: 1rem;
     margin-bottom: 1.5rem;
+    border: 1px solid #204444;
     border-radius: .25rem;
 }
 
