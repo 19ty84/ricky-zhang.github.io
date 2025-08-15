@@ -1,0 +1,62 @@
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #f9fafb;
+    /* 轻微背景，舒适阅读 */
+    color: #222;
+    margin: 0;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 1.8rem;
+    border-bottom: 3px solid #007acc;
+    padding-bottom: .4rem;
+    margin-bottom: 1.5rem;
+    color: #004b80;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    /* 去掉单元格间隙 */
+}
+
+th,
+td {
+    text-align: left;
+    padding: .6rem .8rem;
+    vertical-align: top;
+}
+
+th {
+    background: #e6f7ff;
+    color: #004b80;
+    font-weight: bold;
+    border-bottom: 2px solid #007acc;
+}
+
+tr:nth-child(even) {
+    background: #fff;
+}
+
+tr:hover {
+    background: #f1fbff;
+}
+
+/* 悬停高亮 */
+
+a {
+    text-decoration: none;
+    color: #0066cc;
+    margin-right: .8rem;
+    /* 多链接间距 */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.note {
+    font-size: .9rem;
+    color: #666;
+}
