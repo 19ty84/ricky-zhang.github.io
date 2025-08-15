@@ -1,9 +1,128 @@
+<!-- 本 html 文件的框架由 gpt-oss-20b 生成 -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>files</title>
-  </head>
-  <body>
-    <a href="medly">medly</a>
-  </body>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>文件列表</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: #f9fafb;
+      /* 轻微背景，舒适阅读 */
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      border-bottom: 3px solid #007acc;
+      padding-bottom: .4rem;
+      margin-bottom: 1.5rem;
+      color: #004b80;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      /* 去掉单元格间隙 */
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: .6rem .8rem;
+      vertical-align: top;
+    }
+
+    th {
+      background: #e6f7ff;
+      color: #004b80;
+      font-weight: bold;
+      border-bottom: 2px solid #007acc;
+    }
+
+    tr:nth-child(even) {
+      background: #fff;
+    }
+
+    tr:hover {
+      background: #f1fbff;
+    }
+
+    /* 悬停高亮 */
+
+    a {
+      text-decoration: none;
+      color: #0066cc;
+      margin-right: .8rem;
+      /* 多链接间距 */
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .note {
+      font-size: .9rem;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>文件列表</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>文件/目录</th>
+        <th>链接</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+          <a href="../">返回上一级</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td>工程分享（medlys文件）</td>
+        <td>
+          <a href="medly/工程分享.medlys">github</a>
+          <a href="https://xssmc-share.oss-cn-beijing.aliyuncs.com/工程分享.medlys">阿里云</a>
+          <a href="https://pan.baidu.com/s/1tbtNF46hhJ57UGN_V_2ZXA?pwd=smfr">百度网盘</a>
+        </td>
+        <td class="note">
+          <a href="https://ricky-zhang.com/files/music/medly/工程分享.medlys">工程分享.medlys</a> by <a
+            href="https://space.bilibili.com/519009329">XSsMC</a> is marked <a
+            href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a><img
+            src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt=""
+            style="max-width: 1em;max-height:1em;margin-left: .2em;"><img
+            src="https://mirrors.creativecommons.org/presskit/icons/zero.svg" alt=""
+            style="max-width: 1em;max-height:1em;margin-left: .2em;">
+          <br />
+          该文件是 .medlys 文件，使用 Medly 打开。百度网盘提取码：smfr
+
+        </td>
+      </tr>
+
+      <tr>
+        <td>占位符</td>
+        <td>
+          <a href="https://github.com/">占位符</a>
+        </td>
+        <td class="note">占位符</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</body>
+
 </html>

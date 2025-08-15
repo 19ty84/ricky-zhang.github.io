@@ -1,89 +1,117 @@
 <!-- 本 html 文件的框架由 gpt-oss-20b 生成 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<title>文件列表</title>
-<style>
-  body{
-    font-family:"Helvetica Neue",Arial,sans-serif;
-    background:#f9fafb; /* 轻微背景，舒适阅读 */
-    color:#333;
-    margin:0;padding:2rem;
-  }
-  h1{
-    font-size:1.8rem;
-    border-bottom:3px solid #007acc;
-    padding-bottom:.4rem;
-    margin-bottom:1.5rem;
-    color:#004b80;
-  }
-  .table{
-    width:100%;
-    border-collapse:collapse; /* 去掉单元格间隙 */
-  }
-  th,td{
-    text-align:left;
-    padding:.6rem .8rem;
-    vertical-align:top;
-  }
-  th{
-    background:#e6f7ff;
-    color:#004b80;
-    font-weight:bold;
-    border-bottom:2px solid #007acc;
-  }
-  tr:nth-child(even){background:#fff;}
-  tr:hover{background:#f1fbff;} /* 悬停高亮 */
+  <meta charset="UTF-8">
+  <title>文件列表</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: #f9fafb;
+      /* 轻微背景，舒适阅读 */
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
 
-  a{
-    text-decoration:none;
-    color:#0066cc;
-    margin-right:.8rem; /* 多链接间距 */
-  }
-  a:hover{text-decoration:underline;}
+    h1 {
+      font-size: 1.8rem;
+      border-bottom: 3px solid #007acc;
+      padding-bottom: .4rem;
+      margin-bottom: 1.5rem;
+      color: #004b80;
+    }
 
-  .note{
-    font-size:.9rem;
-    color:#666;
-  }
-</style>
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      /* 去掉单元格间隙 */
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: .6rem .8rem;
+      vertical-align: top;
+    }
+
+    th {
+      background: #e6f7ff;
+      color: #004b80;
+      font-weight: bold;
+      border-bottom: 2px solid #007acc;
+    }
+
+    tr:nth-child(even) {
+      background: #fff;
+    }
+
+    tr:hover {
+      background: #f1fbff;
+    }
+
+    /* 悬停高亮 */
+
+    a {
+      text-decoration: none;
+      color: #0066cc;
+      margin-right: .8rem;
+      /* 多链接间距 */
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .note {
+      font-size: .9rem;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>文件列表</h1>
+  <h1>文件列表</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>文件名</th>
-      <th>下载链接</th>
-      <th>备注</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- 示例行 -->
-    <tr>
-      <td>项目计划书.pdf</td>
-      <td>
-        <a href="https://example.com/files/project_plan_v1.pdf">v1</a>
-        <a href="https://example.com/files/project_plan_v2.pdf">v2</a>
-      </td>
-      <td class="note">最新版本已更新，请下载 v2。</td>
-    </tr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>文件名</th>
+        <th>下载链接</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <tr>
-      <td>会议纪要.docx</td>
-      <td>
-        <a href="https://example.com/files/meeting_minutes_2024-01.docx">2024‑01</a>
-        <a href="https://example.com/files/meeting_minutes_2024-02.docx">2024‑02</a>
-      </td>
-      <td class="note">按月份归档。</td>
-    </tr>
+      <tr>
+        <td>
+          <a href="../">返回上一级</a>
+        </td>
+      </tr>
 
-    <!-- 继续添加更多行 -->
-  </tbody>
-</table>
+      <tr>
+        <td>项目计划书.pdf</td>
+        <td>
+          <a href="https://example.com/files/project_plan_v1.pdf">v1</a>
+          <a href="https://example.com/files/project_plan_v2.pdf">v2</a>
+        </td>
+        <td class="note">最新版本已更新，请下载 v2。</td>
+      </tr>
+
+      <tr>
+        <td>会议纪要.docx</td>
+        <td>
+          <a href="https://example.com/files/meeting_minutes_2024-01.docx">2024‑01</a>
+          <a href="https://example.com/files/meeting_minutes_2024-02.docx">2024‑02</a>
+        </td>
+        <td class="note">按月份归档。</td>
+      </tr>
+
+    </tbody>
+  </table>
 
 </body>
+
 </html>
