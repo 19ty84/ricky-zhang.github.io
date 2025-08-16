@@ -321,7 +321,9 @@
           <details class="music-player">
             <summary>音乐预览</summary>
             <div class="player-container"
-              data-src="//music.163.com/outchain/player?type=2&id=1938049527&auto=0&height=32"></div>
+              data-src="//music.163.com/outchain/player?type=2&id=1938049527&auto=0&height=32">
+              <div class="loading-spinner">加载中...</div>
+            </div>
           </details>
         </td>
       </tr>
@@ -346,6 +348,7 @@
 
           // 如果尚未加载过
           if (!container.innerHTML) {
+            container.innerHTML = '';
             container.innerHTML = `
           <iframe 
             frameborder="no"
