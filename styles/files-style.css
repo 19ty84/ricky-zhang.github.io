@@ -58,6 +58,10 @@ a:hover {
     /* 多链接间距 */
 }
 
+.music-player {
+    margin: 0.5rem;
+}
+
 .note {
     font-size: .9rem;
     color: #666;
