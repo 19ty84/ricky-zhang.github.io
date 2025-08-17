@@ -60,8 +60,6 @@
 
 /* ====== FOOTER STYLES ====== */
 .site-footer {
-    position: absolute;
-    bottom: 0;
     background: var(--bg-dark);
     color: var(--text-light);
     margin-top: 2rem;

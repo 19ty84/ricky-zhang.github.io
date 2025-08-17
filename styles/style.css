@@ -32,6 +32,10 @@ body {
     margin: 0 auto;
 }
 
+main {
+    min-height: 600px;
+}
+
 /* 标题样式 */
 h1 {
     font-size: 2.5rem;
