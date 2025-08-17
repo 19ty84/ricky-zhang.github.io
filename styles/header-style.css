@@ -23,6 +23,10 @@
     vertical-align: middle;
 }
 
+.main-nav {
+    margin: auto;
+}
+
 .main-nav ul {
     list-style: none;
     margin: 0;
