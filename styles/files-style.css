@@ -1,17 +1,27 @@
+:root {
+    --primary-color: #00aaaa;
+    --bg-light: #f9fbfb;
+    --text-dark: #1a2a2a;
+    --text-gray: #505757;
+    --text-light: #ffffff;
+    --link-light: #cce0e0;
+    --link-hover: #40bbbb;
+}
+
 body {
     font-family: "Helvetica Neue", Arial, sans-serif;
-    background: #f9fbfb;
-    color: #1a2a2a;
+    background: var(--bg-light);
+    color: var(--text-dark);
     margin: 0;
     padding: 2rem;
 }
 
 h1 {
     font-size: 1.8rem;
-    border-bottom: 3px solid #00aaaa;
+    border-bottom: 3px solid var(--primary-color);
     padding-bottom: .4rem;
     margin-bottom: 1.5rem;
-    color: #204444;
+    color: var(--text-dark);
 }
 
 .table {
@@ -28,10 +38,10 @@ td {
 }
 
 th {
-    background: #f9fbfb;
+    background: var(--bg-light);
     color: #204444;
     font-weight: bold;
-    border-bottom: 2px solid #00aaaa;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 tr:nth-child(even) {
@@ -64,5 +74,5 @@ a:hover {
 
 .note {
     font-size: .9rem;
-    color: #666;
+    color: var(--text-gray);
 }
