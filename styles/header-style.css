@@ -11,6 +11,7 @@
 .site-header {
     background: var(--primary-color);
     color: var(--text-light);
+    margin-bottom: 2rem;
     padding: 1rem 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 }
@@ -61,6 +62,7 @@
 .site-footer {
     background: var(--bg-dark);
     color: var(--text-light);
+    margin-top: 2rem;
     padding: 2rem 0;
     text-align: center;
 }
