@@ -10,8 +10,8 @@ document.querySelectorAll('details.music-player').forEach(item => {
         </audio>
       `;
     }
-    if (!this.open) { // 销毁
-      this.querySelector('.player-container').innerHTML = '';
-    }
+    // if (!this.open) { // 销毁
+    //   this.querySelector('.player-container').innerHTML = '';
+    // }
   });
 });
