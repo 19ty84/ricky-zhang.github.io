@@ -1,8 +1,8 @@
 document.querySelectorAll('details.music-player').forEach(item => {
   item.addEventListener('toggle', function () {
-    if (this.open) { // 仅当展开时加载
-      const container = this.querySelector('.player-container');
-      const playerUrl = container.dataset.src;
+    const container = this.querySelector('.player-container');
+    const playerUrl = container.dataset.src;
+    if (this.open && container.innerHTML == '') { // 仅当展开时加载
       container.innerHTML = `
         <audio controls preload="auto">
           <source src="${playerUrl}" type="audio/wav">
