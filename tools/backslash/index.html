@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XS's Website</title>
+    <title>反斜杠倍增器</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/styles/style.css">
@@ -31,21 +31,30 @@
         </div>
     </header>
 
-    <main class="container">
-        <h1>Here is the template.</h1>
+    <div class="container">
+        <h1>反斜杠倍增器 Backslash Doubler</h1>
 
         <div>
-            <h2>Hello World</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+                此工具将文本中的每个反斜杠 (\) 转换为两个反斜杠 (\\)。
+                <br>
+                This tool converts each backslash (\) in the text to two backslashes (\\).
             </p>
         </div>
 
-    </main>
+        <div>
+            <label for="inputText">输入文本:</label>
+            <textarea id="inputText" placeholder="请输入包含反斜杠的文本..."></textarea>
+        </div>
+
+        <button id="convertBtn">转换</button>
+
+        <div class="result-container">
+            <label for="outputText">转换结果:</label>
+            <textarea id="outputText" readonly placeholder="转换后的结果将显示在这里..."></textarea>
+            <button id="copyBtn" class="copy-btn">复制结果</button>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="container">
@@ -67,6 +76,45 @@
             </ul>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+            const convertBtn = document.getElementById('convertBtn');
+            const copyBtn = document.getElementById('copyBtn');
+
+            // 转换反斜杠函数
+            function convertBackslashes(text) {
+                // 使用正则表达式全局替换每个反斜杠为两个反斜杠
+                return text.replace(/\\/g, '\\\\');
+            }
+
+            // 转换按钮点击事件
+            convertBtn.addEventListener('click', function () {
+                const input = inputText.value;
+                const result = convertBackslashes(input);
+                outputText.value = result;
+            });
+
+            // 复制按钮点击事件
+            copyBtn.addEventListener('click', function () {
+                outputText.select();
+                document.execCommand('copy');
+
+                // 显示复制成功提示
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '已复制!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            });
+
+            // 初始示例
+            inputText.value = 'C:\\Users\\Documents\\file.txt';
+            convertBtn.click();
+        });
+    </script>
 </body>
 
 </html>
