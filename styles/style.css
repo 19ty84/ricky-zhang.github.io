@@ -110,14 +110,14 @@ textarea {
     color: var(--text-light);
 }
 
-.no-decoration a {
+a.no-decoration {
     color: inherit;
     text-decoration: none;
 }
 
-.no-decoration a:hover,
-.no-decoration a:focus,
-.no-decoration a:active {
+a.no-decoration:hover,
+a.no-decoration:focus,
+a.no-decoration:active {
     color: inherit;
     text-decoration: none;
 }
