@@ -32,17 +32,8 @@
     </header>
 
     <main class="container">
-        <h1>Here are my blogs.</h1>
 
-        <div>
-            <a href="calculating-the-inverse-of-a-matrix/">
-                <div class="border">
-                    <h2>Calculating the Inverse of a Matrix</h2>
-                    <p>In this article, I introduced how to calculate the inverse of a matrix by creating an augmented
-                        matrix and calculate its RREf, and why does it work.</p>
-                </div>
-            </a>
-        </div>
+        <div id="md"></div>
 
     </main>
 
@@ -66,6 +57,34 @@
             </ul>
         </div>
     </footer>
+
+    <script>
+        var text = `
+
+`;
+
+        // 获取DOM元素
+        const md = document.getElementById('md');
+
+        // 配置marked选项
+        marked.setOptions({
+            highlight: function (code, lang) {
+                // 在实际项目中，您可以使用highlight.js等库进行代码高亮
+                return code;
+            },
+            breaks: true,
+            gfm: true
+        });
+
+        // 更新预览函数
+        function updatePreview() {
+            const markdownText = text;
+            const htmlContent = DOMPurify.sanitize(marked.parse(markdownText));
+            md.innerHTML = htmlContent;
+        }
+
+        updatePreview();
+    </script>
 </body>
 
 </html>
