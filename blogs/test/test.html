@@ -10,6 +10,19 @@
     <link rel="stylesheet" type="text/css" href="/styles/header-style.css">
     <script src="/scripts/marked.umd.js"></script>
     <script type="text/javascript" src="/scripts/purify.min.js"></script>
+    <script>
+        // 配置MathJax
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="/scripts/tex-svg.js" async></script>
 </head>
 
 <body>
@@ -66,7 +79,7 @@
 
 You can render LaTeX mathematical expressions using[KaTeX](https://khan.github.io/KaTeX/):
 
-The * Gamma function* satisfying $\Gamma(n) = (n - 1)!\quad\forall n\in\mathbb N$ is via the Euler integral
+The *Gamma function* satisfying $\Gamma(n) = (n - 1)!\quad\forall n\in\mathbb N$ is via the Euler integral
 
 $$
 \Gamma(z) = \int_0 ^\infty t ^ { z- 1}e ^ {- t}dt\,.
@@ -91,7 +104,7 @@ $$
         // 更新预览函数
         function updatePreview() {
             const markdownText = text;
-            const htmlContent = marked.parse(markdownText);
+            const htmlContent = DOMPurify.sanitize(marked.parse(markdownText));
             md.innerHTML = htmlContent;
         }
 
