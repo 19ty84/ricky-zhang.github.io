@@ -109,3 +109,7 @@ textarea {
     /* 蓝色高亮 */
     color: var(--text-light);
 }
+
+.nodeco a {
+    text-decoration: none;
+}
