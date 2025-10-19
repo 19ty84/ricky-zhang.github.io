@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在博客中显示LaTeX公式</title>
+    <script>
+        // 配置MathJax
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+
+        .example {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+
+        .note {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .formula {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>在HTML中插入LaTeX公式</h1>
+
+        <div class="note">
+            <p><strong>提示：</strong> 此页面已配置MathJax，可以直接显示LaTeX公式。公式在加载后会自动渲染。</p>
+        </div>
+
+        <h2>使用方法</h2>
+        <p>在您的HTML页面中添加以下代码到<code>&lt;head&gt;</code>部分：</p>
+
+        <div class="example">
+            <pre><code>&lt;script&gt;
+window.MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: {
+        fontCache: 'global'
+    }
+};
+&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async&gt;&lt;/script&gt;</code></pre>
+        </div>
+
+        <p>然后在您的文章中使用LaTeX语法编写公式：</p>
+        <ul>
+            <li>行内公式：使用<code>$...$</code>或<code>\(...\)</code></li>
+            <li>独立公式：使用<code>$$...$$</code>或<code>\[...\]</code></li>
+        </ul>
+
+        <h2>公式示例</h2>
+
+        <h3>1. 行内公式</h3>
+        <p>勾股定理：$a^2 + b^2 = c^2$ 是一个基本的几何公式。</p>
+        <p>欧拉公式：\(e^{i\pi} + 1 = 0\) 被称为数学中最美的公式。</p>
+
+        <h3>2. 独立公式</h3>
+        <p>二次方程求根公式：</p>
+        <div class="formula">
+            $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+        </div>
+
+        <p>正态分布公式：</p>
+        <div class="formula">
+            \[f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}\]
+        </div>
+
+        <h3>3. 复杂公式</h3>
+        <p>傅里叶变换：</p>
+        <div class="formula">
+            \[F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt\]
+        </div>
+
+        <p>矩阵乘法：</p>
+        <div class="formula">
+            \[
+            \begin{bmatrix}
+            a_{11} & a_{12} \\
+            a_{21} & a_{22}
+            \end{bmatrix}
+            \begin{bmatrix}
+            b_{11} & b_{12} \\
+            b_{21} & b_{22}
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+            a_{11}b_{11} + a_{12}b_{21} & a_{11}b_{12} + a_{12}b_{22} \\
+            a_{21}b_{11} + a_{22}b_{21} & a_{21}b_{12} + a_{22}b_{22}
+            \end{bmatrix}
+            \]
+        </div>
+
+        <h3>4. 更多示例</h3>
+        <p>积分计算：</p>
+        <div class="formula">
+            \[\int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2}\]
+        </div>
+
+        <p>极限计算：</p>
+        <div class="formula">
+            \[\lim_{x \to 0} \frac{\sin x}{x} = 1\]
+        </div>
+
+        <p>求和公式：</p>
+        <div class="formula">
+            \[\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}\]
+        </div>
+
+        <div class="footer">
+            <p>使用MathJax 3渲染LaTeX公式</p>
+        </div>
+    </div>
+</body>
+
+</html>
