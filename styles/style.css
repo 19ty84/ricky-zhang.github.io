@@ -41,13 +41,11 @@ main {
 h1 {
     font-size: 2.5rem;
     margin-bottom: .75em;
-    color: var(--text-dark);
 }
 
 h2 {
     font-size: 1.75rem;
     margin-bottom: .75em;
-    color: var(--text-dark);
 }
 
 /* 段落间距 */
@@ -95,7 +93,7 @@ a:hover .borderlink,
 a:focus .borderlink {
     margin-top: 1rem;
     margin-bottom: 1.5rem;
-    border: 2px solid var(--link-hover);
+    border: 2px solid var(--primary-color);
     border-radius: .5rem;
     padding: 2rem;
     color: var(--primary-color)
