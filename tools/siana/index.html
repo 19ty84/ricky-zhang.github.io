@@ -176,11 +176,7 @@
                     if (input.startsWith(k, i)) {
                         const cp = parseCodePoint(mapping[k]);
                         if (cp != null) {
-                            if (escape) {
-                                out += `\\u{${cp.toString(16).toUpperCase()}}`;
-                            } else {
-                                out += String.fromCodePoint(cp);
-                            }
+                            out += String.fromCodePoint(cp);
                         }
                         i += k.length;
                         matched = true;
