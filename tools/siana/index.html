@@ -168,7 +168,7 @@
         }
 
         // 转换函数：按规则从左到右匹配，双字符优先（通过 keys 已经保证）
-        function convertText(input, { escape = false } = {}) {
+        function convertText(input) {
             let out = '';
             for (let i = 0; i < input.length;) {
                 let matched = false;
@@ -201,7 +201,7 @@
         const $copy = document.getElementById('copyBtn');
 
         function doConvert() {
-            const res = convertText($input.value, { escape: $showEsc.checked });
+            const res = convertText($input.value);
             $output.value = res;
         }
 
