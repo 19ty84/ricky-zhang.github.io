@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>字符到 Unicode 编码转换器</title>
+  <style>
+    @font-face {
+      font-family: 'Roboto Siana';
+      src: url('Roboto+Siana-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      font-family: 'Roboto Siana', system-ui, -apple-system, Segoe UI, Roboto, "Microsoft YaHei", Arial;
+      margin: 24px;
+      background: #f7f8fb;
+      color: #0b1220
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(12, 18, 38, .08)
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 0 0 12px
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #e3e7ee;
+      font-size: 15px;
+      resize: vertical
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px
+    }
+
+    .col {
+      flex: 1
+    }
+
+    button {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 0;
+      background: #111827;
+      color: white;
+      cursor: pointer
+    }
+
+    .muted {
+      color: #6b7280;
+      font-size: 13px
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px
+    }
+
+    .small {
+      padding: 6px 10px;
+      font-size: 13px
+    }
+
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: #0f1724;
+      color: #e6eef8;
+      padding: 12px;
+      border-radius: 8px;
+      overflow: auto
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>字符到 Unicode（定制映射）转换器</h1>
+    <p class="muted">根据你提供的映射表（区分大小写，且双字符优先）把输入文本替换为对应的 Unicode 字符（使用对应的代码点）。</p>
+
+    <div>
+      <label class="muted">输入文本：</label>
+      <textarea id="input" placeholder="在此输入要转换的文本，例如：OE Oe Oi oi A a ..."></textarea>
+    </div>
+
+    <div class="controls">
+      <button id="convert">转换</button>
+      <button id="clear" class="small">清空输入</button>
+      <button id="copy" class="small">复制结果</button>
+      <button id="download" class="small">下载结果（.txt）</button>
+      <label><input type="checkbox" id="live"> 实时转换</label>
+      <label title="当开启时，输出将显示为 \u{F0200} 形式的转义（便于调试）"><input type="checkbox" id="showEsc"> 显示转义格式</label>
+    </div>
+
+    <div style="margin-top:12px">
+      <label class="muted">输出：</label>
+      <textarea id="output" readonly></textarea>
+    </div>
+
+    <div style="margin-top:12px">
+      <label class="muted">说明：</label>
+      <pre>
+规则摘要：
+- 表中每行左侧是要匹配的字符串，右侧是目标 Unicode 代码点（例如：OE -> U+F0217）。
+- 双字符（如 "OE"、"Oi"）优先于单字符匹配。
+- 区分大小写。
+- 未命中映射的字符保持不变。
+
+可选：切换“显示转义格式”以用 \u{...} 显示目标代码点，方便在源码中使用。
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    // 映射表（直接来自用户提供的数据）
+    const mapping = {
+      "OE": "U+F0217",
+      "Oe": "U+F0217",
+      "OI": "U+F0218",
+      "Oi": "U+F0218",
+      "oe": "U+F0237",
+      "oi": "U+F0238",
+      "A": "U+F0200",
+      "B": "U+F0201",
+      "G": "U+F0202",
+      "D": "U+F0203",
+      "H": "U+F0204",
+      "U": "U+F0205",
+      "Z": "U+F0206",
+      "E": "U+F0207",
+      "C": "U+F0208",
+      "I": "U+F0209",
+      "K": "U+F020A",
+      "M": "U+F020B",
+      "N": "U+F020C",
+      "S": "U+F020D",
+      "O": "U+F020E",
+      "P": "U+F020F",
+      "R": "U+F0210",
+      "J": "U+F0211",
+      "T": "U+F0212",
+      "F": "U+F0213",
+      "V": "U+F0214",
+      "L": "U+F0215",
+      "X": "U+F0216",
+      "W": "U+F0219",
+      "Q": "U+F021A",
+      "Y": "U+F021B",
+      "a": "U+F0220",
+      "b": "U+F0221",
+      "g": "U+F0222",
+      "d": "U+F0223",
+      "h": "U+F0224",
+      "u": "U+F0225",
+      "z": "U+F0226",
+      "e": "U+F0227",
+      "c": "U+F0228",
+      "i": "U+F0229",
+      "k": "U+F022A",
+      "m": "U+F022B",
+      "n": "U+F022C",
+      "s": "U+F022D",
+      "o": "U+F022E",
+      "p": "U+F022F",
+      "r": "U+F0230",
+      "j": "U+F0231",
+      "t": "U+F0232",
+      "f": "U+F0233",
+      "v": "U+F0234",
+      "l": "U+F0235",
+      "x": "U+F0236",
+      "w": "U+F0239",
+      "q": "U+F023A",
+      "y": "U+F023B"
+    };
+
+    // 预处理：把 mapping 转成 key 列表（按长度降序保证双字符优先）
+    const keys = Object.keys(mapping).sort((a, b) => b.length - a.length);
+
+    // 把 U+xxxx 转成整数 codepoint
+    function parseCodePoint(s) {
+      if (!s) return null;
+      const m = s.match(/U\+([0-9A-Fa-f]+)/);
+      if (!m) return null;
+      return parseInt(m[1], 16);
+    }
+
+    // 转换函数：按规则从左到右匹配，双字符优先（通过 keys 已经保证）
+    function convertText(input, { escape = false } = {}) {
+      let out = '';
+      for (let i = 0; i < input.length;) {
+        let matched = false;
+        for (const k of keys) {
+          if (input.startsWith(k, i)) {
+            const cp = parseCodePoint(mapping[k]);
+            if (cp != null) {
+              if (escape) {
+                out += `\\u{${cp.toString(16).toUpperCase()}}`;
+              } else {
+                out += String.fromCodePoint(cp);
+              }
+            }
+            i += k.length;
+            matched = true;
+            break; // 找到最高优先级的匹配后跳出
+          }
+        }
+        if (!matched) {
+          out += input[i];
+          i++;
+        }
+      }
+      return out;
+    }
+
+    // DOM
+    const $input = document.getElementById('input');
+    const $output = document.getElementById('output');
+    const $convert = document.getElementById('convert');
+    const $clear = document.getElementById('clear');
+    const $copy = document.getElementById('copy');
+    const $download = document.getElementById('download');
+    const $live = document.getElementById('live');
+    const $showEsc = document.getElementById('showEsc');
+
+    function doConvert() {
+      const res = convertText($input.value, { escape: $showEsc.checked });
+      $output.value = res;
+    }
+
+    $convert.addEventListener('click', doConvert);
+    $clear.addEventListener('click', () => { $input.value = ''; doConvert(); $input.focus(); });
+    $copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText($output.value);
+        alert('已复制到剪贴板');
+      } catch (e) {
+        // 回退
+        $output.select();
+        document.execCommand('copy');
+        alert('已复制到剪贴板（回退方法）');
+      }
+    });
+
+    $download.addEventListener('click', () => {
+      const blob = new Blob([$output.value], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'converted.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    $live.addEventListener('change', () => {
+      if ($live.checked) $input.addEventListener('input', doConvert);
+      else $input.removeEventListener('input', doConvert);
+    });
+
+    $showEsc.addEventListener('change', doConvert);
+
+    // 页面载入时自动转换一次示例（如果有内容）
+    document.addEventListener('DOMContentLoaded', () => {
+      // 可放示例文本
+      $input.value = '';
+      doConvert();
+    });
+
+  </script>
+</body>
+
+</html>
