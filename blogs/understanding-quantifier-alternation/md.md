@@ -1,0 +1,77 @@
+# 从博弈论的角度理解量词交替
+
+当一个命题中有交替出现的 $\forall$ 和 $\exists$ 时，往往会让人感觉很烧脑。最经典的情况就是连续的定义：
+
+$$\forall \varepsilon > 0 \ \exists \delta > 0 \ \forall x\ (|x-a|<\delta \Rightarrow |f(x) - f(a)| < \varepsilon)$$
+
+函数在 $a$ 点连续当且仅当对于所有大于零的 $\varepsilon$ 都存在大于零的 $\delta$ 使得对于所有 $x$ 如果 $x$ 与 $a$ 的距离小于 $\delta$ 那么 $f(x)$ 与 $f(a)$ 的距离小于 $\varepsilon$。
+
+看着就像谜语。
+
+但最近，我看到了一个绝妙的想法：把量词交替看作两名理性玩家的博弈。
+
+## 介绍
+
+两名玩家分别是 $\exists$ 方和 $\forall$ 方。$\exists$ 方的目标是使命题成立，而 $\forall$ 方的目标是尽可能让命题不成立。从最外层（也就是最左边）开始，轮到谁，谁就做出选择。显然，这是一场完全信息博弈，而且不存在平局的情况（因为排中律）。因此，肯定有玩家有必胜策略。如果 $\exists$ 方有必胜策略，则原命题成立，否则原命题不成立。
+
+之所以可以这样看，是因为 $\exists$ 只需要一个例子来证明，而 $\forall$ 只需要一个反例来证伪。想要证明命题，只需要对 $\exists$ 精妙地构造出这个例子，或者证明 $\forall$ 永远找不到反例；想要证伪命题，只需要对 $\forall$ 精妙地构造一个反例，或者证明 $\exists$ 永远找不到例子。
+
+## 示例
+
+以刚才提到的连续的定义为例，我们来证明函数 $f(x) = \dfrac{1}{x}$ 在 $x = 2$ 处连续，也就是：
+
+$$\forall \varepsilon > 0 \ \exists \delta > 0 \ \forall x\ (|x - 2| < \delta \Rightarrow |\frac{1}{x} - \frac{1}{2}| < \varepsilon)$$
+
+对局开始，首先轮到 $\forall$ 方选择 $\varepsilon$。由于 $\forall$ 方的目标是使命题不成立，$\forall$ 方应该选一个尽可能小的 $\varepsilon$，这样最终的 $|\frac{1}{x} - \frac{1}{2}| <  \varepsilon$ 就会更难被满足。让我们假设这里 $\forall$ 方选择了 $\varepsilon = 0.1$。
+
+接下来轮到 $\exists$ 方选择 $\delta$。$\exists$ 方需要确保命题成立。因此，他需要选一个足够小的 $\delta$ ，这样当接下来 $\forall$ 方选择 $x$ 时就会受到更严格的范围限制：$|x - 2| < \delta$。假设 $\exists$ 方选择了 $\delta = 0.01$。
+
+现在该 $\forall$ 方选择 $x$ 了。如果超出 $|x - 2| < \delta = 0.01$ 的限制，那么命题恒成立，不是 $\forall$ 方想要的结果。为了胜利，$\forall$ 方必须选一个 $x$，使 $|x - 2| < 0.01$ 成立但 $|\frac{1}{x} - \frac{1}{2}| < 0.1$ 不成立。展开来看，就是 $1.99 < x < 2.01$ 但 $\frac{1}{x} \geq 0.6$ 或 $\frac{1}{x} \leq 0.4$。
+
+如果 $\frac{1}{x} \geq 0.6$, 那么 $x \leq \frac{10}{6} < 1.7$。然而，该条件无法与 $1.99 < x < 2.01$ 同时满足。同样，如果 $\frac{1}{x} \leq 0.4$，那么 $x \geq \frac{10}{4} = 2.5$，也无法与 $1.99 < x < 2.01$ 同时成立。
+
+因此，当 $\exists$ 方把 $\delta$ 选择为 $0.01$ 后，$\forall$ 方无论如何都无法让命题不成立，这一局 $\exists$ 方赢了。
+
+当然，为了真正证明命题成立，我们必须证明无论 $\forall$ 方选了多刁钻的 $\varepsilon$，$\exists$ 方都能选出足够小的 $\delta$ 来让 $\forall$ 方无法达成目的，也就是说 $\exists$ 方必胜。
+
+### 严格证明
+
+设 $\varepsilon > 0$ 为任意。（$\forall$ 方做出选择）
+
+要使 $|\frac{1}{x} - \frac{1}{2}| < \varepsilon$，需要 $|\frac{2 - x}{2x}| < \varepsilon$，即 $\frac{|x - 2|}{2|x|} < \varepsilon$。为了防止分母的 $x$ 取到 $0$，我们先设下 $|x-2|$ 的限制（如果范围太大就接下来再调整），比如 $|x - 2| < 1$，即 $1 < |x| < 3$。从而，
+
+$$|x - 2| < 2|x|\varepsilon < 2\varepsilon$$
+
+与前面 $|x - 2| < 1$ 的限制合并， 得到
+
+$$|x - 2| < \min\{2\varepsilon, 1\}$$
+
+因此，只要 $|x - 2| < \min\{2\varepsilon, 1\}$，就能满足 $|\frac{1}{x} - \frac{1}{2}| < \varepsilon$。对于 $\exists$ 方来说这意味着，当他看到 $\forall$ 方选择了 $\varepsilon$ 后，无论这个 $\varepsilon$ 有多小，他都能选出一个 $\delta = \min\{2\varepsilon, 1\}$，使得 $|x - 2| < \delta$ 时必然满足 $|\frac{1}{x} - \frac{1}{2}| < \varepsilon$。该游戏 $\exists$ 方必胜，原命题为真。
+
+## 另一个示例：逐点连续和一致连续
+
+逐点连续和一致连续的定义看起来很像，容易弄混，但逐点连续不一定一致连续，一致连续是比逐点连续更强的结论。从博弈论的角度可以直观地解释这种区别。
+
+逐点连续的定义：
+
+$$\forall a \in l, \varepsilon > 0 \ \exists \delta > 0 \ \forall x\ (|x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon)$$
+
+一致连续的定义：
+
+$$\forall \varepsilon > 0 \ \exists \delta > 0 \ \forall x, a \in l\ (|x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon)$$
+
+可以看到，逐点连续和一致连续的区别就是 $\forall$ 方选择 $a$ 的时机：在逐点连续中，$a$ 在 $\exists$ 方选 $\delta$ 前就被选好了，而在一致连续中，$a$ 是在 $\exists$ 方选 $\delta$ 之后才被 $\forall$ 方选择。这个时机上的区别导致了一致连续比逐点连续更难满足。
+
+在逐点连续里，$\forall$ 方先给出点 $a$，然后 $\exists$ 方就能针对这个点挑选一个合适的 $\delta$。只要他能够分别应付每一个 $a$ 就能赢。
+
+但在一致连续里，$\exists$ 方必须先给出一个统一的 $\delta$，然后 $\forall$ 方再来选择 $a$ 点来攻击。$\exists$ 方无法根据 $a$ 点的位置灵活调整策略，必须在 $\forall$ 方选点之前定好通用策略才能赢。
+
+一个典型的逐点连续但不一致连续的场景是 $f(x) = \frac{1}{x}$ 在区间 $(0, \infin)$ 上：对于每一个点 $a \in \frac{1}{x}$ ，$\exists$ 方都能给出合适的 $\delta$ 来证明连续，但如果要求 $\exists$ 方先选出 $\delta$，则 $\forall$ 方可以针对这个 $\delta$ 构造一个非常接近 $0$ 的 $a$ 来使命题不成立。
+
+可以看到，量词的顺序十分重要，因为它决定了两名玩家在进行到这一步时所知信息的多少。
+
+## 总结
+
+通过把含有交替的量词的命题看成两名玩家的博弈，这些烧脑的命题也变得容易理解、符合直觉了一些。
+
+但这又让我想到，假如一个命题有无穷多个交替的量词（比如 $\forall a_1 \exists a_2 \forall a_3 \exists a_4 \forall a_5 \exists a_6 \dots$）呢？虽然这在一阶逻辑中是不被允许的，但似乎确实有非标准的逻辑系统允许这种情况。那么在这种情境下，这个游戏就不一定有必胜策略了。有没有可能，两名玩家永远玩下去，永远分不出胜负？这种情况又对应命题的什么状态呢？
